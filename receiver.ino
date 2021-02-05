@@ -10,9 +10,6 @@ struct package
 {
   int joyposX;
   int joyposY;
-  int potValue1;
-  int potValue2;
-  int modeNow;
 };
 
 typedef struct package Package;
@@ -39,14 +36,14 @@ void setup() {
   myRadio.setDataRate( RF24_250KBPS );
   //Set module as receiver
   myRadio.startListening();
-  pinMode(B1A, OUTPUT); // define pin as output
-  pinMode(B1B, OUTPUT);
-  pinMode(A1A, OUTPUT);
-  pinMode(A1B, OUTPUT);
-  digitalWrite(B1A, LOW);
-  digitalWrite(B1B, LOW);
-  digitalWrite(A1A, LOW);
-  digitalWrite(A1B, LOW);
+  pinMode(IN1, OUTPUT); // define pin as output
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, LOW);
   delay(3000);
 }
 
@@ -69,49 +66,49 @@ void loop() {
     if (data.joyposX > 510)
     {
       // This is forward
-      digitalWrite(A1A, LOW);
-      digitalWrite(A1B, HIGH);
-      digitalWrite(B1A, LOW);
-      digitalWrite(B1B, HIGH);
+      digitalWrite(IN1, LOW);
+      digitalWrite(IN2, HIGH);
+      digitalWrite(IN3, LOW);
+      digitalWrite(IN4, HIGH);
 
     }
 
     else if (data.joyposX < 480)
     {
       // This is backward
-      digitalWrite(A1A, HIGH);
-      digitalWrite(A1B, LOW);
-      digitalWrite(B1A, HIGH);
-      digitalWrite(B1B, LOW);
+      digitalWrite(IN1, HIGH);
+      digitalWrite(IN2, LOW);
+      digitalWrite(IN3, HIGH);
+      digitalWrite(IN4, LOW);
 
     }
 
     else if (data.joyposY < 480)
     {
       // This is right
-      digitalWrite(A1A, HIGH);
-      digitalWrite(A1B, LOW);
-      digitalWrite(B1A, LOW);
-      digitalWrite(B1B, HIGH);
+      digitalWrite(IN1, HIGH);
+      digitalWrite(IN2, LOW);
+      digitalWrite(IN3, LOW);
+      digitalWrite(IN4, HIGH);
 
     }
 
     else if (data.joyposY > 520)
     {
       // This is right
-      digitalWrite(A1A, LOW);
-      digitalWrite(A1B, HIGH);
-      digitalWrite(B1A, HIGH);
-      digitalWrite(B1B, LOW);
+      digitalWrite(IN1, LOW);
+      digitalWrite(IN2, HIGH);
+      digitalWrite(IN3, HIGH);
+      digitalWrite(IN4, LOW);
 
     }
 
     else
     {
-      digitalWrite(B1A, LOW);
-      digitalWrite(B1B, LOW);
-      digitalWrite(A1A, LOW);
-      digitalWrite(A1B, LOW);
+      digitalWrite(IN1, LOW);
+      digitalWrite(IN2, LOW);
+      digitalWrite(IN3, LOW);
+      digitalWrite(IN4, LOW);
     }
   }
 }
